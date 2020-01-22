@@ -17,7 +17,13 @@ public class Project1 {
       if (arg.charAt(0) == '-') {
         String option = arg.substring(1);
         if (option.equals("README")) {
-          String Readme = "Readme";
+          String Readme = "# Project 1 \n" +
+                              "This project will implement a class Airline that extends AbstractAirline " +
+                              "and a class Flight that extends AbstractFlight. \n" +
+                              "An Airline has a name and consists of multiple Flights. A Flight departs from a source and leaves " +
+                              "at a given departure time, and \narrives at a destination at a given arrival time";
+
+
           System.out.println(Readme);
           System.exit(1);
         }
@@ -57,6 +63,7 @@ public class Project1 {
       Airline airline = new Airline(airlineName);
       airline.addFlight(flight);
 
+      // Check if "print" option is input
       printOption(args,airline);
 
     } catch (NumberFormatException e) {
@@ -66,7 +73,10 @@ public class Project1 {
 
     System.exit(1);
   }
-
+/*
+* This function will check if <code>print</code> option is input.
+* If yes, it will print all the information of flights in the airline.
+ */
   private static void printOption(String[] args, Airline airline) {
     for (String arg : args) {
       if (arg.charAt(0) == '-') {

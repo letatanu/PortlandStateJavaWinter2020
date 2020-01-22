@@ -33,11 +33,13 @@ public class Airline extends AbstractAirline {
         this.Flights.add(abstractFlight);
     }
 
+    // getting the name of the airline
     @Override
     public String getName() {
         return this.name;
     }
 
+    // getting all flights in the airline
     @Override
     public ArrayList<AbstractFlight> getFlights() {
         return this.Flights;
