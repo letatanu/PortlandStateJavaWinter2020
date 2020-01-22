@@ -1,5 +1,6 @@
 package edu.pdx.cs410J.NhutLe;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -9,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Unit tests for the {@link Flight} class.
  */
 public class FlightTest {
-  
+  @Ignore
   @Test(expected = UnsupportedOperationException.class)
   public void getArrivalStringNeedsToBeImplemented() {
     Flight flight = new Flight();
