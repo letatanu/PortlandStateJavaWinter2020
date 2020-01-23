@@ -64,7 +64,21 @@ public class Project1 {
       airline.addFlight(flight);
 
       // Check if "print" option is input
-      printOption(args,airline);
+      /*
+       * This function will check if <code>print</code> option is input.
+       * If yes, it will print all the information of flights in the airline.
+       */
+      for (String arg : args) {
+        if (arg.charAt(0) == '-') {
+          String option = arg.substring(1);
+          if (option.equals("print")) {
+            System.out.println("Airline: " + airline.getName());
+            for (AbstractFlight f : airline.getFlights()) {
+              System.out.println(f.toString());
+            }
+          }
+        }
+      }
 
     } catch (NumberFormatException e) {
       System.err.println("The flight number must be an integer");
@@ -72,23 +86,5 @@ public class Project1 {
     }
 
     System.exit(1);
-  }
-/*
-* This function will check if <code>print</code> option is input.
-* If yes, it will print all the information of flights in the airline.
- */
-  private static void printOption(String[] args, Airline airline) {
-    for (String arg : args) {
-      if (arg.charAt(0) == '-') {
-        String option = arg.substring(1);
-        if (option.equals("print")) {
-          System.out.println("Airline: " + airline.getName());
-          for (AbstractFlight flight : airline.getFlights()) {
-            System.out.println(flight.toString());
-          }
-        }
-      }
-    }
-
   }
 }

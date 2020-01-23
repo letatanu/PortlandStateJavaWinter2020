@@ -10,19 +10,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Unit tests for the {@link Flight} class.
  */
 public class FlightTest {
-//  @Ignore
   @Test
   public void getArrivalStringNeedsToBeImplemented() {
     Flight flight = new Flight();
     assertThat(flight.getArrivalString(), equalTo(""));
   }
-//  @Ignore
+
   @Test
   public void initiallyAllFlightsHaveTheSameNumber() {
     Flight flight = new Flight();
     assertThat(flight.getNumber(), equalTo(42));
   }
-//  @Ignore
+  @Test
+  public void getSrcStringNeedsToBeImplemented() {
+    Flight flight = new Flight();
+    assertThat(flight.getSource(), equalTo(""));
+  }
+
   @Test
   public void forProject1ItIsOkayIfGetDepartureTimeReturnsNull() {
     Flight flight = new Flight();

@@ -26,7 +26,7 @@ public class Airline extends AbstractAirline {
         this.name = name;
     }
     /*
-    * Adding a new <code> Flight</code> to <code>Flights</code>
+    * Adding a new <code>Flight</code> to <code>Flights</code>
      */
     @Override
     public void addFlight(AbstractFlight abstractFlight) {
