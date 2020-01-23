@@ -4,7 +4,7 @@ import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.AbstractFlight;
 
 import java.util.ArrayList;
-/*
+/**
 * The Airline class extends the <code>AbstractAirline</code>.
 * It will contain the information of all flights of an <code>Airline</code>.
  */
@@ -12,7 +12,7 @@ public class Airline extends AbstractAirline {
     private final String name;
     private ArrayList<AbstractFlight> Flights;
 
-    /*
+    /**
      * Creates a new <code>Airline</code>
      *
      * @param name

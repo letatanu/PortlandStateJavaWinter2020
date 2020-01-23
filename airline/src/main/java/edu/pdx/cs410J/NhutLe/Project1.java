@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 public class Project1 {
   public static void main(String[] args) {
 
-    /* Check if the option <code>-README</code> is input.
+    /** Check if the option <code>-README</code> is input.
     * If yes, print out <code> README </code> and exit.
     */
     for (String arg : args) {
@@ -22,49 +22,66 @@ public class Project1 {
                               "and a class Flight that extends AbstractFlight. \n" +
                               "An Airline has a name and consists of multiple Flights. A Flight departs from a source and leaves " +
                               "at a given departure time, and \narrives at a destination at a given arrival time";
-
-
           System.out.println(Readme);
-          System.exit(1);
+          System.exit(0);
         }
       }
     }
 
-    // If there's no option <code>README</code>. Check the number of arguments input.
+    /** If there's no option <code>README</code>. Check the number of arguments input.
+     *
+     */
     if (args.length < 6) {
       System.err.println("Missing command line arguments");
       System.exit(1);
     }
 
-    // Getting airline name from the argument 0
+    /** Getting airline name from the argument 0
+     *
+     */
     String airlineName = args[0];
 
-    // try to parse <code>flightNumber<code> from the argument 1 to integer.
+    /** try to parse <code>flightNumber<code> from the argument 1 to integer.
+     *
+     */
     try {
-      // Getting flight number from the argument 1
+      /**
+       * Getting flight number from the argument 1
+       */
       int flightNumber = Integer.parseInt(args[1]);
 
-      // Getting <code>source</code>
+      /**
+       * Getting <code>source</code>
+       */
       String src = args[2];
 
-      // Getting <code>depart</code>
+      /**
+       * Getting <code>depart</code>
+       */
       String depart = args[3];
 
-      // Getting <code>destination</code>
+      /**
+       * Getting <code>destination</code>
+       */
       String dest = args[4];
 
-      // Getting <code>arrival</code>
+      /**
+       * Getting <code>arrival</code>
+       */
       String arrive = args[5];
 
-      // Create a new flight from the input
+      /**
+       * Create a new flight from the input
+       */
       Flight flight = new Flight(flightNumber, src, depart, dest, arrive);
 
-      // create an airline and add the flight to the airline
+      /**
+       * create an airline and add the flight to the airline
+       */
       Airline airline = new Airline(airlineName);
       airline.addFlight(flight);
 
-      // Check if "print" option is input
-      /*
+      /** Check if "print" option is input
        * This function will check if <code>print</code> option is input.
        * If yes, it will print all the information of flights in the airline.
        */
@@ -85,6 +102,6 @@ public class Project1 {
       System.exit(1);
     }
 
-    System.exit(1);
+    System.exit(0);
   }
 }

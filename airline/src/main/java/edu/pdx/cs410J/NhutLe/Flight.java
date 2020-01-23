@@ -11,7 +11,7 @@ public class Flight extends AbstractFlight {
   private final String depart;
   private final String dest;
   private final String arrive;
-  /*
+  /**
    * Creates a new <code>Flight</code>
    *
    * @param flightNumber
@@ -33,7 +33,7 @@ public class Flight extends AbstractFlight {
     this.depart = "";
     this.arrive = "";
   }
-  /*
+  /**
   * This function will validate an airport code input.
   * The code must have a length of 3 and cannot contain numbers nor special characters.
    */
@@ -48,7 +48,7 @@ public class Flight extends AbstractFlight {
     }
   }
 
-  /*
+  /**
    * Creates a new <code>Flight</code> with inputs
    *
    * @param flightNumber
@@ -75,27 +75,47 @@ public class Flight extends AbstractFlight {
     this.arrive = arrive;
   }
 
-  // getting the flight number
+  /** getting the flight number
+   *
+   * @return
+   */
   @Override
   public int getNumber() {
     return this.flightNumber;
   }
-  // getting the departure airport code
+
+  /** getting the departure airport code
+   *
+   * @return
+   */
+
   @Override
   public String getSource() {
    return this.src;
   }
-  // getting the depart time
+
+  /** getting the depart time
+   *
+   * @return
+   */
   @Override
   public String getDepartureString() {
     return this.depart;
   }
-  // getting the arrival airport code
+
+  /** getting the arrival airport code
+   *
+   * @return
+   */
   @Override
   public String getDestination() {
     return this.dest;
   }
-  // getting the arrival time
+
+  /** getting the arrival time
+   *
+   * @return
+   */
   @Override
   public String getArrivalString() {
     return this.arrive;
