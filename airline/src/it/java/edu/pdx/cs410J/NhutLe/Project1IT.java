@@ -43,7 +43,7 @@ public class Project1IT extends InvokeMainTestCase {
   }
   /**
    * Tests that invoking the main method with inappropriate arguments + option <code>-print</code>
-   * It will print out the information input with error
+   * It will print out the information input without errors
    */
   @Test
   public void testWithValidCommandLineArgumentsWithPrintOption() {
