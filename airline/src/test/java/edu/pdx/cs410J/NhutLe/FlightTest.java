@@ -33,21 +33,22 @@ public class FlightTest {
     assertThat(flight.getDeparture(), is(nullValue()));
   }
 
-
   @Test(expected = IllegalArgumentException.class)
   public void DepartAirportCodeExpectToGetError() {
-    Flight flight = new Flight(122,"11@A","","AAA","123213");
+    Flight flight = new Flight("123", "PX", "03/03/2020", "12:00", "OPD", "09/09/2020", "16:00");
   }
 
   @Test
   public void FlightDescriptionShouldBeMatched() {
-    int number = 123;
+    String number = "123";
     String src = "AAA";
-    String depart = "12-12-2020 11:22";
+    String departDate = "12-12-2020" ;
+    String departTime = "11:22";
     String dest = "AAB";
-    String arrive = "12-13-2020 11:20";
-    Flight flight = new Flight(number,src,depart,dest,arrive);
-    assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + depart + " arrives " + dest + " at " + arrive));
+    String arriveDate = "12-13-2020";
+    String arriveTime = "11:20";
+    Flight flight = new Flight(number,src,departDate, departTime,dest,arriveDate, arriveTime);
+    assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + departDate +" " + departTime + " arrives " + dest + " at " + arriveDate + " " + arriveTime));
 
   }
 }
