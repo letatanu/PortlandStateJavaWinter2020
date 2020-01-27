@@ -35,7 +35,7 @@ public class Project1IT extends InvokeMainTestCase {
 
   @Test
   public void testWithValidCommandLineArguments() {
-    MainMethodResult result = invokeMain("Hello", "123", "AAA", "02-02-2020", "AAB", "02-03-2020");
+    MainMethodResult result = invokeMain("Hello", "123", "AAA", "02/02/2020", "12:11", "AAB", "02/03/2020", "11:34");
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardError(), containsString(""));
 
@@ -47,12 +47,12 @@ public class Project1IT extends InvokeMainTestCase {
    */
   @Test
   public void testWithValidCommandLineArgumentsWithPrintOption() {
-    MainMethodResult result = invokeMain("Hello", "123", "AAA", "02-02-2020", "AAB", "02-03-2020","-print");
+    MainMethodResult result = invokeMain("-print", "Hello", "123", "AAA", "02/02/2020", "12:11", "AAB", "02/03/2020", "11:34");
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardError(), containsString(""));
 
     assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
-                                                                        "Flight 123 departs AAA at 02-02-2020 arrives AAB at 02-03-2020\n"));
+                                                                        "Flight 123 departs AAA at 02/02/2020 12:11 arrives AAB at 02/03/2020 11:34\n"));
   }
   /**
    * Tests that invoking the main method with appropriate arguments + option <code>-print</code>

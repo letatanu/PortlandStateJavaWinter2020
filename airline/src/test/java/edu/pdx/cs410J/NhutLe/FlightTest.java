@@ -13,7 +13,7 @@ public class FlightTest {
   @Test
   public void getArrivalStringNeedsToBeImplemented() {
     Flight flight = new Flight();
-    assertThat(flight.getArrivalString(), equalTo(""));
+    assertThat(flight.getArrivalString(), equalTo(" "));
   }
 
   @Test
@@ -42,10 +42,10 @@ public class FlightTest {
   public void FlightDescriptionShouldBeMatched() {
     String number = "123";
     String src = "AAA";
-    String departDate = "12-12-2020" ;
+    String departDate = "12/12/2020" ;
     String departTime = "11:22";
     String dest = "AAB";
-    String arriveDate = "12-13-2020";
+    String arriveDate = "12/13/2020";
     String arriveTime = "11:20";
     Flight flight = new Flight(number,src,departDate, departTime,dest,arriveDate, arriveTime);
     assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + departDate +" " + departTime + " arrives " + dest + " at " + arriveDate + " " + arriveTime));
