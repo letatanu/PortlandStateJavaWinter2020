@@ -2,9 +2,7 @@ package edu.pdx.cs410J.NhutLe;
 
 import edu.pdx.cs410J.AbstractFlight;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * The main class for the CS410J airline Project
