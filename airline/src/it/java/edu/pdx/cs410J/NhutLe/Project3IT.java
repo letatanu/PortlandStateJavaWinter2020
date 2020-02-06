@@ -79,10 +79,10 @@ public class Project3IT extends InvokeMainTestCase {
    * Test that <code>-pretty</code> is working
    */
   public void prettyShouldWork() {
-    MainMethodResult result = invokeMain("-pretty", "file", "Hello", "123", "AAA", "02/02/2020", "12:11", "am", "AAB", "02/03/2020", "11:34");
+    MainMethodResult result = invokeMain("-pretty", "file", "Hello", "123", "CAE", "02/02/2020", "12:11", "am", "CAE", "02/03/2020", "11:34");
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
-                                                                 "Flight 123 departs AAA at 02/02/2020 12:11 arrives AAB at 02/03/2020 11:34\n"));
+                                                                 "Flight 123 departs CAE at 02/02/2020 12:11 arrives CAE at 02/03/2020 11:34\n"));
   }
 
 
