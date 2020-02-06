@@ -3,7 +3,6 @@ package edu.pdx.cs410J.NhutLe;
 import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.AirlineDumper;
-import edu.pdx.cs410J.ParserException;
 
 import java.io.*;
 import java.net.Inet4Address;
@@ -15,7 +14,7 @@ public class TextDumper implements AirlineDumper {
 
   /**
    * @param fileName the name of writing file
-   * @param airline  the airline information needed to write
+   * @param Airline  the airline information needed to write
    */
   TextDumper(String fileName) {
     this.fileName = fileName;

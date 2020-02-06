@@ -90,7 +90,6 @@ public class AirlineTest {
 
     Flight f = (Flight) airline.getFlights().get(0);
     assertThat(flight.toString(), equalTo("Flight 123 departs PDX at 12/12/20, 11:22 AM arrives PDX at 12/13/20, 12:31 PM"));
-
   }
 
 }
