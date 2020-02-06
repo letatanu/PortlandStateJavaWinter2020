@@ -61,8 +61,7 @@ public class Project3IT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardError(), containsString(""));
 
-    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
-                                                                        "Flight 123 departs CAE at 02/02/2020 12:11 AM arrives BWI at 02/03/2020 11:34 PM\n"));
+    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\nThe last flight: Flight 123 departs CAE at 2/2/20, 12:11 AM arrives BWI at 2/3/20, 11:34 PM\n"));
   }
   /**
    * Tests that invoking the main method with appropriate arguments + option <code>-print</code>
