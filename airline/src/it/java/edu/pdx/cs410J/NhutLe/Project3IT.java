@@ -77,13 +77,25 @@ public class Project3IT extends InvokeMainTestCase {
   /**
    * Test that <code>-pretty</code> is working
    */
+  @Test
   public void prettyShouldWork() {
-    MainMethodResult result = invokeMain("-pretty", "file", "Hello", "123", "CAE", "02/02/2020", "12:11", "am", "CAE", "02/03/2020", "11:34");
+    MainMethodResult result = invokeMain("-pretty", "file", "Hello", "123", "PDX", "02/02/2020", "12:11", "am", "PDX", "02/03/2020", "11:34", "am");
     assertThat(result.getExitCode(), equalTo(0));
-    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
-                                                                 "Flight 123 departs CAE at 02/02/2020 12:11 arrives CAE at 02/03/2020 11:34\n"));
+//    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
+//                                                                 "Flight 123 departs CAE at 02/02/2020 12:11 AM arrives CAE at 02/03/2020 11:34 AM\n"));
+  }
+  @Test
+  public void prettyShouldNotWork() {
+    MainMethodResult result = invokeMain("-pretty", "Hello", "123", "CAE", "02/02/2020", "12:11", "am", "CAE", "02/03/2020", "11:34", "am");
+    assertThat(result.getExitCode(), equalTo(1));
   }
 
-
+  @Test
+  public void prettyShouldPrintOutSth() {
+    MainMethodResult result = invokeMain("-pretty", "-" , "Hello", "123", "PDX", "02/02/2020", "12:11", "am", "PDX", "02/03/2020", "11:34", "am");
+    assertThat(result.getExitCode(), equalTo(0));
+    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
+                                                                 "Flight 123 departs CAE at 02/02/2020 12:11 AM arrives CAE at 02/03/2020 11:34 AM\n"));
+  }
 
 }
