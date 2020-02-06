@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * An integration test for the {@link Project1} main class.
+ * An integration test for the {@link Project3} main class.
  */
 public class Project3IT extends InvokeMainTestCase {
 
@@ -22,7 +22,7 @@ public class Project3IT extends InvokeMainTestCase {
     this(Project3.class);
   }
     /**
-     * Invokes the main method of {@link Project1} with the given arguments.
+     * Invokes the main method of {@link Project3} with the given arguments.
      */
 
   protected MainMethodResult invokeMain(String... args) {
