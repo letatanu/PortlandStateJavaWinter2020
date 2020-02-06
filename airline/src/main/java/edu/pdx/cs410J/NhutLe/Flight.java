@@ -132,7 +132,7 @@ public class Flight extends AbstractFlight implements Comparable<Flight> {
         }
       }
     }
-    if (!value.toUpperCase().equals(checkDate) || parsedDate == null) {
+    if (parsedDate == null) {
       throw new IllegalArgumentException(value + " cannot be parsed to date format");
     }
 

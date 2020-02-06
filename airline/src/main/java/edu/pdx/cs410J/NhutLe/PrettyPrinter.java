@@ -32,7 +32,9 @@ public class PrettyPrinter implements AirlineDumper {
     Collections.sort(flights);
 
     int l = flights.size();
-
+/**
+ * Handling with file '-
+ */
     if (fileName.equals("-")) {
       System.out.println("The airline is " + abstractAirline.getName() + " with " + Integer.toString(l) + " flights following: ");
       for (int i = 0; i < l; i++) {
@@ -43,10 +45,20 @@ public class PrettyPrinter implements AirlineDumper {
       }
       return;
     }
-
+/**
+ * Handle File Name
+ */
+    File file = new File(this.fileName);
+    if (!file.exists()){
+      try {
+        file.createNewFile();
+      } catch (IOException e1) {
+        throw new IOException("Cannot create a new file;");
+      }
+    }
       BufferedWriter bufferedWriter = null;
       try {
-        FileWriter fileWriter = new FileWriter(fileName);
+        FileWriter fileWriter = new FileWriter(this.fileName);
         bufferedWriter = new BufferedWriter(fileWriter);
         /**
          * writing airline name
@@ -75,15 +87,7 @@ public class PrettyPrinter implements AirlineDumper {
         bufferedWriter.close();
 
       } catch (FileNotFoundException e) {
-        /**
-         * If reading file does not exist, try to create a new one.
-         */
-        try {
-          File file = new File(this.fileName);
-          file.createNewFile();
-        } catch (IOException e1) {
-          throw new IOException("File does not exist and cannot create a new file;");
-        }
+          throw new IOException("File does not exist");
       }
     }
 }
