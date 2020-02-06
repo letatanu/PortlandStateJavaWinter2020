@@ -60,7 +60,6 @@ public class Project3IT extends InvokeMainTestCase {
     MainMethodResult result = invokeMain("-print", "Hello", "123", "CAE", "02/02/2020", "12:11", "am", "BWI", "02/03/2020", "11:34", "pm");
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardError(), containsString(""));
-
     assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\nThe last flight: Flight 123 departs CAE at 2/2/20, 12:11 AM arrives BWI at 2/3/20, 11:34 PM\n"));
   }
   /**
@@ -96,5 +95,7 @@ public class Project3IT extends InvokeMainTestCase {
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardOut(), equalTo("The airline is Hello with 1 flights following: \nThe flight 0\nFlight 123 departs PDX at 2/2/20, 12:11 AM arrives PDX at 2/3/20, 11:34 AM duration: 2123 minutes\n------------------------------------------\n"));
   }
+
+
 
 }

@@ -34,4 +34,45 @@ public class FlightTest {
     Flight flight = new Flight(number,src,departDate,dest,arriveDate);
     assertThat(flight.toString(), equalTo("Flight 123 departs PDX at 12/12/20, 11:22 PM arrives PDX at 12/13/20, 11:20 PM"));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void FlightWithWrongDate() {
+    String number = "123";
+    String src = "PDX";
+    String departDate = "12/12/2020 11:22 PM";
+    String dest = "PDX";
+    String arriveDate = "12/10/200 11:20 PM";
+    Flight flight = new Flight(number,src,departDate,dest,arriveDate);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void FlightWithWrongSource() {
+    String number = "123";
+    String src = "AAA";
+    String departDate = "12/12/2020 11:22 PM";
+    String dest = "PDX";
+    String arriveDate = "12/15/2020 11:20 PM";
+    Flight flight = new Flight(number,src,departDate,dest,arriveDate);
+  }
+
+
+  @Test(expected = IllegalArgumentException.class)
+  public void FlightWithWrongArrivalDateLessThanDepartDate() {
+    String number = "123";
+    String src = "PDX";
+    String departDate = "12/12/2020 11:22 PM";
+    String dest = "PDX";
+    String arriveDate = "12/10/2020 11:20 PM";
+    Flight flight = new Flight(number,src,departDate,dest,arriveDate);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void FlightWithWrongFlightNumber() {
+    String number = "A23";
+    String src = "PDX";
+    String departDate = "12/12/2020 11:22 PM";
+    String dest = "PDX";
+    String arriveDate = "12/20/2020 11:20 PM";
+    Flight flight = new Flight(number,src,departDate,dest,arriveDate);
+  }
 }
