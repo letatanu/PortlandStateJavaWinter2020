@@ -94,8 +94,7 @@ public class Project3IT extends InvokeMainTestCase {
   public void prettyShouldPrintOutSth() {
     MainMethodResult result = invokeMain("-pretty", "-" , "Hello", "123", "PDX", "02/02/2020", "12:11", "am", "PDX", "02/03/2020", "11:34", "am");
     assertThat(result.getExitCode(), equalTo(0));
-    assertThat(result.getTextWrittenToStandardOut(), equalTo("Airline: Hello\n" +
-                                                                 "Flight 123 departs CAE at 02/02/2020 12:11 AM arrives CAE at 02/03/2020 11:34 AM\n"));
+    assertThat(result.getTextWrittenToStandardOut(), equalTo("The airline is Hello with 1 flights following: \nThe flight 0\nFlight 123 departs PDX at 2/2/20, 12:11 AM arrives PDX at 2/3/20, 11:34 AM duration: 2123 minutes\n------------------------------------------\n"));
   }
 
 }
