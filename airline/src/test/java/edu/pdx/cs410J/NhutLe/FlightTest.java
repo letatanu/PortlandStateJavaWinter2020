@@ -10,28 +10,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Unit tests for the {@link Flight} class.
  */
 public class FlightTest {
-//  @Test
-//  public void getArrivalStringNeedsToBeImplemented() {
-//    Flight flight = new Flight();
-//    assertThat(flight.getArrivalString(), equalTo("2/5/20, 5:31 PM"));
-//  }
 
   @Test
   public void initiallyAllFlightsHaveTheSameNumber() {
     Flight flight = new Flight();
     assertThat(flight.getNumber(), equalTo(42));
   }
-  @Test
-  public void getSrcStringNeedsToBeImplemented() {
-    Flight flight = new Flight();
-    assertThat(flight.getSource(), equalTo(""));
-  }
 
-  @Test
-  public void forProject3ItIsOkayIfGetDepartureTime() {
-    Flight flight = new Flight();
-    assertThat(flight.getDeparture(), equalTo(33));
-  }
+
 
   @Test(expected = IllegalArgumentException.class)
   public void DepartAirportCodeExpectToGetError() {
@@ -41,12 +27,11 @@ public class FlightTest {
   @Test
   public void FlightDescriptionShouldBeMatched() {
     String number = "123";
-    String src = "AAA";
-    String departDate = "12/12/2020 11:22 pm";
-    String dest = "AAB";
-    String arriveDate = "12/13/2020 11:20 pm";
+    String src = "PDX";
+    String departDate = "12/12/2020 11:22 PM";
+    String dest = "PDX";
+    String arriveDate = "12/13/2020 11:20 PM";
     Flight flight = new Flight(number,src,departDate,dest,arriveDate);
-    assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + departDate  + " arrives " + dest + " at " + arriveDate));
-
+    assertThat(flight.toString(), equalTo("Flight 123 departs PDX at 12/12/20, 11:22 PM arrives PDX at 12/13/20, 11:20 PM"));
   }
 }
