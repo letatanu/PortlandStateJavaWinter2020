@@ -1,21 +1,20 @@
 package edu.pdx.cs410J.NhutLe;
 
 import edu.pdx.cs410J.AbstractFlight;
+import edu.pdx.cs410J.AirportNames;
+import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 
-public class Flight extends AbstractFlight {
+public class Flight extends AbstractFlight implements Comparable<Flight> {
   private final int flightNumber;
   private final String src;
-  private final String departDate;
-  private final String departTime;
+  private final Date departDateTime;
   private final String dest;
-  private final String arriveDate;
-  private final String arriveTime;
+  private final Date arriveDateTime;
   /**
    * Creates a new <code>Flight</code> with inputs
    *
@@ -25,27 +24,25 @@ public class Flight extends AbstractFlight {
    *        Three-letter code of departure airport
    * @param dest
    *        Three-letter code of arrival airport
-   * @param departDate
-   *        Departure date
-   * @param departTime
-   *        Departure time (24-hour time)
-   * @param arriveDate
-   *        Arrival date
-   * @param arriveTime
-   *        Arrival time (24-hour time)
+   * @param departDateTime
+   *        Departure date time (am/pm)
+   * @param arriveDateTime
+   *        Arrival date time (am/pm)
    */
-  Flight(String flightNumber, String src, String departDate, String departTime, String dest, String arriveDate, String arriveTime ) throws IllegalArgumentException {
+  Flight(String flightNumber, String src, String departDateTime, String dest, String arriveDateTime ) throws IllegalArgumentException {
     super();
     this.flightNumber = validateNumber(flightNumber);
 
     this.src = validateCode(src);
 
-    this.departDate = validateDate(departDate);
-    this.departTime = validateTime(departTime);
+    this.departDateTime = validateDate(departDateTime);
 
     this.dest = validateCode(dest);
-    this.arriveDate = validateDate(arriveDate);
-    this.arriveTime = validateTime(arriveTime);
+    this.arriveDateTime = validateDate(arriveDateTime);
+    long diff = this.timesDiffInMinutes();
+    if (diff < 0 ) {
+      throw new IllegalArgumentException("The arrive date time is before the departure Date time");
+    }
   }
 
   Flight() {
@@ -53,15 +50,14 @@ public class Flight extends AbstractFlight {
     this.flightNumber = 42;
     this.src = "";
     this.dest = "";
-    this.departDate = "";
-    this.departTime = "";
-    this.arriveDate = "";
-    this.arriveTime = "";
+    this.departDateTime = new Date();
+    this.arriveDateTime = new Date();
   }
 
   /**
    * This function will validate an airport code input.
    * The code must have a length of 3 and cannot contain numbers nor special characters.
+   * The code must exist in the airport names
    * if it is valid, the function will return its valid code
    */
   private String validateCode(String code) throws IllegalArgumentException {
@@ -79,6 +75,10 @@ public class Flight extends AbstractFlight {
       }
     }
 
+    code = code.toUpperCase();
+    if (AirportNames.getName(code) == null) {
+      throw new IllegalArgumentException(code + " does not exist in airport names");
+    }
 
     return code;
   }
@@ -100,53 +100,51 @@ public class Flight extends AbstractFlight {
   /**
    *
    */
-  private String validateDate(String value) throws IllegalArgumentException {
+  private Date validateDate(String value) throws IllegalArgumentException {
     String checkDate = "";
+    Date parsedDate = null;
     try {
-      SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+      SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
       format1.setLenient(false);
-      Date parsedDate = format1.parse(value);
+      parsedDate = format1.parse(value);
       checkDate = format1.format(parsedDate);
-    } catch (ParseException e) {
+    } catch (ParseException e1) {
       try {
-        SimpleDateFormat format2 = new SimpleDateFormat("M/dd/yyyy");
+        SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy h:mm aa");
         format2.setLenient(false);
-        Date parsedDate = format2.parse(value);
+        parsedDate = format2.parse(value);
         checkDate = format2.format(parsedDate);
-      } catch (ParseException e1) {
-        throw new IllegalArgumentException(value + " is not in correct date format");
+      } catch (ParseException e2) {
+        try {
+          SimpleDateFormat format3 = new SimpleDateFormat("M/dd/yyyy hh:mm aa");
+          format3.setLenient(false);
+          parsedDate = format3.parse(value);
+          checkDate = format3.format(parsedDate);
+        } catch (ParseException e3) {
+          try {
+            SimpleDateFormat format4 = new SimpleDateFormat("M/dd/yyyy h:mm aa");
+            format4.setLenient(false);
+            parsedDate = format4.parse(value);
+            checkDate = format4.format(parsedDate);
+          } catch (ParseException e4) {
+            throw new IllegalArgumentException(value + " is not in correct date format");
+          }
+        }
       }
     }
-    if (!value.equals(checkDate)) {
+    if (!value.toUpperCase().equals(checkDate) || parsedDate == null) {
       throw new IllegalArgumentException(value + " cannot be parsed to date format");
     }
-    return value;
+
+    return parsedDate;
   }
 
   /**
    *
    */
-  private String validateTime(String value) throws IllegalArgumentException {
-    String checkDate = "";
-    try {
-      SimpleDateFormat format1 = new SimpleDateFormat("HH:mm");
-      format1.setLenient(false);
-      Date parsedDate = format1.parse(value);
-      checkDate = format1.format(parsedDate);
-    } catch (ParseException e) {
-      try {
-        SimpleDateFormat format2 = new SimpleDateFormat("H:mm");
-        format2.setLenient(false);
-        Date parsedDate = format2.parse(value);
-        checkDate = format2.format(parsedDate);
-      } catch (ParseException e1) {
-        throw new IllegalArgumentException(value + " is not in correct time format");
-      }
-    }
-    if (!value.equals(checkDate)) {
-      throw new IllegalArgumentException(value + " cannot be parsed to time format");
-    }
-    return value;
+  public long timesDiffInMinutes() {
+    long diff = this.arriveDateTime.getTime() - this.departDateTime.getTime();
+    return diff/(1000*60);
   }
   /** getting the flight number
    *
@@ -173,7 +171,9 @@ public class Flight extends AbstractFlight {
    */
   @Override
   public String getDepartureString() {
-    return this.departDate + " " + this.departTime;
+    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT);
+    String depart = df.format(this.departDateTime).toString();
+    return depart;
   }
 
   /** getting the arrival airport code
@@ -191,6 +191,42 @@ public class Flight extends AbstractFlight {
    */
   @Override
   public String getArrivalString() {
-    return this.arriveDate + " " + this.arriveTime;
+    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT);
+    String arrival = df.format(this.arriveDateTime).toString();
+    return arrival;
   }
+
+  /**
+   * Get departure time
+   * @return
+   */
+
+  @Override
+  public Date getDeparture() {
+    return this.departDateTime;
+  }
+
+  /**
+   * Get arrival time
+   * @return
+   */
+  @Override
+  public Date getArrival() {
+    return this.arriveDateTime;
+  }
+
+  /**
+   * Compare 2 flights. 
+   * @param o
+   * @return compare
+   */
+
+  @Override
+  public int compareTo(Flight o) {
+    Flight compares = (Flight) o;
+    int compare = this.src.compareTo(compares.getSource());
+    if (compare == 0) {
+      compare = this.departDateTime.compareTo(compares.getDeparture());
+    }
+    return compare;  }
 }

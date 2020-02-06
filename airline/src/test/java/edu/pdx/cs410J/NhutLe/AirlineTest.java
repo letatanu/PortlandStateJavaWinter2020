@@ -32,12 +32,10 @@ public class AirlineTest {
   public void addNewValidFlight() {
     String number = "123";
     String src = "AAA";
-    String departDate = "12/12/2020" ;
-    String departTime = "11:22";
+    String departDate = "12/12/2020 11:22 am" ;
     String dest = "AAB";
-    String arriveDate = "12/13/2020";
-    String arriveTime = "11:20";
-    Flight flight = new Flight(number, src, departDate, departTime, dest, arriveDate, arriveTime);
+    String arriveDate = "12/13/2020 12:31 pm";
+    Flight flight = new Flight(number, src, departDate, dest, arriveDate);
     Airline airline = new Airline("Hello Kitty");
     airline.addFlight(flight);
     Flight gotFlight = (Flight) airline.getFlights().get(0);
@@ -51,12 +49,10 @@ public class AirlineTest {
   public void addNewInvalidFlight() {
     String number = "123df";
     String src = "AAA";
-    String departDate = "12/12/2020" ;
-    String departTime = "11:22";
+    String departDate = "12/12/2020 11:22 am" ;
     String dest = "AAB";
-    String arriveDate = "12/13/2020";
-    String arriveTime = "11:20";
-    Flight flight = new Flight(number, src, departDate, departTime, dest, arriveDate, arriveTime);
+    String arriveDate = "12/13/2020 12:31 pm";
+    Flight flight = new Flight(number, src, departDate, dest, arriveDate);
     Airline airline = new Airline("Hello Kitty");
     airline.addFlight(flight);
     Flight gotFlight = (Flight) airline.getFlights().get(0);
@@ -68,12 +64,10 @@ public class AirlineTest {
   public void printOutTheNumberOfFlightsInTheAirline() {
     String number = "123";
     String src = "AAA";
-    String departDate = "12/12/2020" ;
-    String departTime = "11:22";
+    String departDate = "12/12/2020 11:22 am" ;
     String dest = "AAB";
-    String arriveDate = "12/13/2020";
-    String arriveTime = "11:20";
-    Flight flight = new Flight(number, src, departDate, departTime, dest, arriveDate, arriveTime);
+    String arriveDate = "12/13/2020 12:31 pm";
+    Flight flight = new Flight(number, src, departDate, dest, arriveDate);
     Airline airline = new Airline("Hello Kitty");
     airline.addFlight(flight);
     assertThat(airline.toString(),equalTo("Hello Kitty with 1 flights"));
@@ -86,18 +80,16 @@ public class AirlineTest {
   public void printOutTheInformationOfAFlightInTheAirline() {
     String number = "123";
     String src = "AAA";
-    String departDate = "12/12/2020" ;
-    String departTime = "11:22";
+    String departDate = "12/12/2020 11:22 am" ;
     String dest = "AAB";
-    String arriveDate = "12/13/2020";
-    String arriveTime = "11:20";
-    Flight flight = new Flight(number, src, departDate, departTime, dest, arriveDate, arriveTime);
+    String arriveDate = "12/13/2020 12:31 pm";
+    Flight flight = new Flight(number, src, departDate, dest, arriveDate);
 
     Airline airline = new Airline("Hello Kitty");
     airline.addFlight(flight);
 
     Flight f = (Flight) airline.getFlights().get(0);
-    assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + departDate +" " + departTime + " arrives " + dest + " at " + arriveDate + " " + arriveTime));
+    assertThat(flight.toString(), equalTo("Flight " + number + " departs " + src + " at " + departDate  + " arrives " + dest + " at " + arriveDate));
 
   }
 }
