@@ -10,11 +10,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Unit tests for the {@link Flight} class.
  */
 public class FlightTest {
-  @Test
-  public void getArrivalStringNeedsToBeImplemented() {
-    Flight flight = new Flight();
-    assertThat(flight.getArrivalString(), equalTo(" "));
-  }
+//  @Test
+//  public void getArrivalStringNeedsToBeImplemented() {
+//    Flight flight = new Flight();
+//    assertThat(flight.getArrivalString(), equalTo("2/5/20, 5:31 PM"));
+//  }
 
   @Test
   public void initiallyAllFlightsHaveTheSameNumber() {
@@ -28,9 +28,9 @@ public class FlightTest {
   }
 
   @Test
-  public void forProject1ItIsOkayIfGetDepartureTimeReturnsNull() {
+  public void forProject3ItIsOkayIfGetDepartureTime() {
     Flight flight = new Flight();
-    assertThat(flight.getDeparture(), is(nullValue()));
+    assertThat(flight.getDeparture(), equalTo(33));
   }
 
   @Test(expected = IllegalArgumentException.class)
