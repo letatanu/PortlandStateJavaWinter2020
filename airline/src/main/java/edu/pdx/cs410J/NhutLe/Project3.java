@@ -1,11 +1,9 @@
 package edu.pdx.cs410J.NhutLe;
 
-import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.ParserException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * The main class for the CS410J airline Project

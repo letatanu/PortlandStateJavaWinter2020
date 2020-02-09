@@ -5,7 +5,6 @@ import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.AirlineDumper;
 
 import java.io.*;
-import java.net.Inet4Address;
 import java.util.ArrayList;
 
 public class TextDumper implements AirlineDumper {
