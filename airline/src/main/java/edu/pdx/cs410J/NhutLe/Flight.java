@@ -2,7 +2,6 @@ package edu.pdx.cs410J.NhutLe;
 
 import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.AirportNames;
-import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
