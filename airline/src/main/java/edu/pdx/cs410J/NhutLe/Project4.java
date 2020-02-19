@@ -2,14 +2,15 @@ package edu.pdx.cs410J.NhutLe;
 
 import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.ParserException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * The main class for the CS410J airline Project
  */
-public class Project3 {
-  public static void main(String[] args) {
+public class Project4 {
+  public static void main(String[] args) throws IOException {
     /**
      * This flag will be turned on when option '-print' is input.
      */
@@ -31,6 +32,11 @@ public class Project3 {
      *
      */
     String filePrint = null;
+    /**
+     * @param xmlFile Name of XML file
+     */
+    String xmlFile = null;
+
     /** Check if the option <code>-README</code> or <code>-print</code> or both is input.
      * If yes <code>-README</code>, print out <code> README </code> and exit.
      * If yes <code>-print</code>, set printFlag = true.
@@ -45,31 +51,37 @@ public class Project3 {
       } else if (arg.charAt(0) == '-') {
         String option = arg.substring(1);
         if (option.equals("README") && stillOptionInput) {
-          String Readme = "# Project 3 \n" +
-                              "This project will implement a class Airline that extends AbstractAirline " +
-                              "and a class Flight that extends AbstractFlight. \n" +
-                              "An Airline has a name and consists of multiple Flights. A Flight departs from a source and leaves " +
-                              "at a given departure time, and \narrives at a destination at a given arrival time";
+          String Readme = "# Project 4 \n" +
+                  "This project will implement a class Airline that extends AbstractAirline " +
+                  "and a class Flight that extends AbstractFlight. \n" +
+                  "An Airline has a name and consists of multiple Flights. A Flight departs from a source and leaves " +
+                  "at a given departure time, and \narrives at a destination at a given arrival time";
           System.out.println(Readme);
           System.exit(0);
         } else if (option.equals("print") && stillOptionInput) {
           printFlag = true;
         } else if (option.equals("textFile")) {
-          if (i+1 >= args.length) {
+          if (i + 1 >= args.length) {
             System.err.println("The saving file name is missing...");
             System.exit(1);
           }
-          fileName = args[i+1];
+          fileName = args[i + 1];
           i++;
         } else if (option.equals("pretty")) {
-          if (i+1 >= args.length) {
+          if (i + 1 >= args.length) {
             System.err.println("The printing file name is missing...");
             System.exit(1);
           }
-          filePrint = args[i+1];
+          filePrint = args[i + 1];
           i++;
-        }
-        else {
+        } else if (option.equals("xmlFile")) {
+          if (i + 1 >= args.length) {
+            System.err.println("The XML file name is missing...");
+            System.exit(1);
+          }
+          xmlFile = args[i + 1];
+          i++;
+        } else {
           System.err.println("Unknown command line options");
           System.exit(1);
         }
@@ -209,17 +221,42 @@ public class Project3 {
           AbstractFlight lastFlight = flightList.get(flightList.size() - 1);
           System.out.println("The last flight: " + lastFlight.toString());
         }
-        if (filePrint != null){
+        if (filePrint != null) {
           PrettyPrinter prt = new PrettyPrinter(filePrint);
           prt.dump(airline);
         }
         System.exit(0);
       }
 
+      if (xmlFile != null) {
+        try {
+          XmlParser xmlParser = new XmlParser(xmlFile);
+          airline = (Airline) xmlParser.parse();
+          if (!airline.getName().equals(airlineName)) {
+            System.err.println("The airline name is not as same as the airline name from the XML file");
+            System.exit(1);
+          }
+          airline.addFlight(flight);
+          XmlDumper xmlDumper = new XmlDumper(xmlFile);
+          xmlDumper.dump(airline);
+        } catch (ParserException | IOException e) {
+          if (e.getMessage().equals("XML File is created successfully")) {
+            airline = new Airline(airlineName);
+            airline.addFlight(flight);
+            XmlDumper xmlDumper = new XmlDumper(xmlFile);
+            xmlDumper.dump(airline);
+          } else {
+            System.err.println(e.getMessage());
+            System.exit(1);
+          }
+        }
+      }
+
     } catch (IllegalArgumentException | IOException e) {
       System.err.println(e.getMessage());
       System.exit(1);
     }
+
     System.exit(0);
   }
 }

@@ -8,21 +8,21 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * An integration test for the {@link Project3} main class.
+ * An integration test for the {@link Project4} main class.
  */
-public class Project3IT extends InvokeMainTestCase {
+public class Project4IT extends InvokeMainTestCase {
 
   private final Class<?> mainClass;
 
-  protected Project3IT(Class<?> mainClass) {
+  protected Project4IT(Class<?> mainClass) {
     this.mainClass = mainClass;
   }
 
-  public Project3IT() {
-    this(Project3.class);
+  public Project4IT() {
+    this(Project4.class);
   }
     /**
-     * Invokes the main method of {@link Project3} with the given arguments.
+     * Invokes the main method of {@link Project4} with the given arguments.
      */
 
   protected MainMethodResult invokeMain(String... args) {
@@ -68,7 +68,7 @@ public class Project3IT extends InvokeMainTestCase {
    */
   @Test
   public void testWithReadmeOption () {
-    MainMethodResult result = invokeMain( Project3.class, "-README");
+    MainMethodResult result = invokeMain( Project4.class, "-README");
     assertThat(result.getExitCode(), equalTo(0));
     assertThat(result.getTextWrittenToStandardOut(), containsString("Project 3"));
   }
