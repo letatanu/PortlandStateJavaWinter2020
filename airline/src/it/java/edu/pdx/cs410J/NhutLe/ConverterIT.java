@@ -64,10 +64,8 @@ public class ConverterIT extends InvokeMainTestCase {
 
     @Test
     public void UnknownCommandLineArguments() {
-
-        MainMethodResult result = invokeMain("test.txt");
+        MainMethodResult result = invokeMain("test.txt", "test.xml", "aaaaaa");
         assertThat(result.getExitCode(), equalTo(1));
         assertThat(result.getTextWrittenToStandardError(), equalTo("Unknown command line arguments\n"));
-
     }
 }
