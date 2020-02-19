@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<!DOCTYPE airline SYSTEM "http://www.cs.pdx.edu/~whitlock/dtds/airline.dtd">
+<airline>
+<name>Hello Kitty</name>
+<flight>
+<number>123</number>
+<src>PDX</src>
+<depart>
+<date day="12" month="12" year="2020"/>
+<time hour="11" minute="22"/>
+</depart>
+<dest>PDX</dest>
+<arrive>
+<date day="12" month="13" year="2020"/>
+<time hour="12" minute="31"/>
+</arrive>
+</flight>
+<flight>
+<number>123</number>
+<src>PDX</src>
+<depart>
+<date day="12" month="12" year="2020"/>
+<time hour="11" minute="22"/>
+</depart>
+<dest>PDX</dest>
+<arrive>
+<date day="12" month="13" year="2020"/>
+<time hour="12" minute="31"/>
+</arrive>
+</flight>
+</airline>

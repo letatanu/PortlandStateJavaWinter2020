@@ -227,5 +227,15 @@ public class Flight extends AbstractFlight implements Comparable<Flight> {
     if (compare == 0) {
       compare = this.departDateTime.compareTo(compares.getDeparture());
     }
-    return compare;  }
+    return compare;
+  }
+
+  public Date getDepartDateTime() {
+    return this.departDateTime;
+  }
+
+  public Date getArriveDateTime() {
+    return this.arriveDateTime;
+  }
+
 }

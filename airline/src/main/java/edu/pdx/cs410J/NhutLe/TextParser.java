@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class TextParser implements AirlineParser {
+public class TextParser implements AirlineParser  {
   private final String fileName;
 
   TextParser(String fileName) {
