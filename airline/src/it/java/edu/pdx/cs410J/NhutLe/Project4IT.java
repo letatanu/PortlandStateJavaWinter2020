@@ -98,5 +98,10 @@ public class Project4IT extends InvokeMainTestCase {
   }
 
 
+  @Test
+  public void XmlFileCanBeParsedFromAirline() {
+    MainMethodResult result = invokeMain("-xmlFile", "hello" , "Hello", "123", "PDX", "02/02/2020", "12:11", "am", "PDX", "02/03/2020", "11:34", "am");
+    assertThat(result.getExitCode(), equalTo(0));
+  }
 
 }
