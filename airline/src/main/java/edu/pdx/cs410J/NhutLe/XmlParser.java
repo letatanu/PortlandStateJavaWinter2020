@@ -8,12 +8,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,9 +46,9 @@ public class XmlParser extends ProjectXmlHelper implements AirlineParser {
             String departDate = String.format("%s/%s/%s", departDateEle.getAttribute("month"), departDateEle.getAttribute("day"), departDateEle.getAttribute("year"));
             Element departTimeEle = (Element) node.getElementsByTagName("time").item(0);
             String time = String.format("%s:%s", departTimeEle.getAttribute("hour"), departTimeEle.getAttribute("minute"));
-            final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+            final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             final Date time_ = sdf.parse(time);
-            String time_12 = new SimpleDateFormat("K:mm aa").format(time_);
+            String time_12 = new SimpleDateFormat("hh:mm aa").format(time_);
             return departDate + " " + time_12.toLowerCase();
         } catch (Exception e) {
             throw new ParserException("Cannot parse Date");
@@ -80,7 +82,10 @@ public class XmlParser extends ProjectXmlHelper implements AirlineParser {
             builder = factory.newDocumentBuilder();
             builder.setErrorHandler(this);
             builder.setEntityResolver(this);
-            Document doc = builder.parse(this.getClass().getResourceAsStream(this.fileName));
+            FileInputStream fis = new FileInputStream(this.fileName);
+            InputSource is = new InputSource(fis);
+//            Document doc = builder.parse(this.getClass().getResourceAsStream(this.fileName));
+            Document doc = builder.parse(is);
             doc.getDocumentElement().normalize();
             String airlineName = doc.getElementsByTagName("name").item(0).getTextContent();
             Airline airline = new Airline(airlineName);

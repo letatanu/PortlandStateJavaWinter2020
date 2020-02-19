@@ -44,7 +44,7 @@ public class TextParser implements AirlineParser  {
           if (line == null) {
             throw new ParserException("Wrong Format");
           }
-
+          SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY hh:mm aa");
           String src = line;
           line = bufferedReader.readLine();
           if (line == null) {
@@ -56,17 +56,9 @@ public class TextParser implements AirlineParser  {
             throw new ParserException("Wrong format");
           }
 
-          String departDateTime = null;
-          DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-          try {
-            Date departDateT = df.parse(line);
-            departDateTime = new SimpleDateFormat("MM/dd/YYYY hh:mm aa").format(departDateT);
-
-          } catch (ParseException e1) {
-            throw new ParserException("Cannot parse departure date time");
-          }
-
+          String departDateTime = line;
           line = bufferedReader.readLine();
+
           if (line == null) {
             throw new ParserException("Wrong Format");
           }
@@ -81,13 +73,8 @@ public class TextParser implements AirlineParser  {
           if (arriveDateTimeTest.length != 3) {
             throw new ParserException("Wrong format");
           }
-          String arriveDateTime = null;
-          try {
-            Date arriveDateT = df.parse(line);
-            arriveDateTime = new SimpleDateFormat("MM/dd/YYYY hh:mm aa").format(arriveDateT);
-          } catch (ParseException e1) {
-            throw new ParserException("Cannot parse arrival date time");
-          }
+
+          String arriveDateTime = line;
 
           Flight flight = new Flight(flightNumber, src, departDateTime, dest, arriveDateTime);
           parsedAirline.addFlight(flight);

@@ -32,6 +32,7 @@ public class Project4IT extends InvokeMainTestCase {
   /**
    * Tests that invoking the main method with no arguments issues an error
    */
+
   @Test
   public void testNoCommandLineArguments() {
     MainMethodResult result = invokeMain();
@@ -70,7 +71,7 @@ public class Project4IT extends InvokeMainTestCase {
   public void testWithReadmeOption () {
     MainMethodResult result = invokeMain( Project4.class, "-README");
     assertThat(result.getExitCode(), equalTo(0));
-    assertThat(result.getTextWrittenToStandardOut(), containsString("Project 3"));
+    assertThat(result.getTextWrittenToStandardOut(), containsString("Project 4"));
   }
 
   /**

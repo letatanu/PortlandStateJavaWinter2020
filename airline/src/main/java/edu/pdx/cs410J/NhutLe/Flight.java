@@ -102,34 +102,14 @@ public class Flight extends AbstractFlight implements Comparable<Flight> {
   private Date validateDate(String value) throws IllegalArgumentException {
     String checkDate = "";
     Date parsedDate = null;
+    value = value.toUpperCase();
     try {
       SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
       format1.setLenient(false);
       parsedDate = format1.parse(value);
       checkDate = format1.format(parsedDate);
     } catch (ParseException e1) {
-      try {
-        SimpleDateFormat format2 = new SimpleDateFormat("MM/dd/yyyy h:mm aa");
-        format2.setLenient(false);
-        parsedDate = format2.parse(value);
-        checkDate = format2.format(parsedDate);
-      } catch (ParseException e2) {
-        try {
-          SimpleDateFormat format3 = new SimpleDateFormat("M/dd/yyyy hh:mm aa");
-          format3.setLenient(false);
-          parsedDate = format3.parse(value);
-          checkDate = format3.format(parsedDate);
-        } catch (ParseException e3) {
-          try {
-            SimpleDateFormat format4 = new SimpleDateFormat("M/dd/yyyy h:mm aa");
-            format4.setLenient(false);
-            parsedDate = format4.parse(value);
-            checkDate = format4.format(parsedDate);
-          } catch (ParseException e4) {
-            throw new IllegalArgumentException(value + " is not in correct date format");
-          }
-        }
-      }
+        throw new IllegalArgumentException(value + " is not in correct date format");
     }
     if (parsedDate == null) {
       throw new IllegalArgumentException(value + " cannot be parsed to date format");

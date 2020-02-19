@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * The main class for the CS410J airline Project
  */
 public class Project4 {
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) {
     /**
      * This flag will be turned on when option '-print' is input.
      */
@@ -208,26 +208,9 @@ public class Project4 {
         airline = new Airline(airlineName);
         airline.addFlight(flight);
       }
-
-
-      /** Check if "print" option is input
-       * This function will check if <code>print</code> option is input.
-       * If yes, it will print all the information of flights in the airline.
+      /**
+       * XML File
        */
-      if (printFlag || filePrint != null) {
-        if (printFlag) {
-          System.out.println("Airline: " + airline.getName());
-          ArrayList<AbstractFlight> flightList = airline.getFlights();
-          AbstractFlight lastFlight = flightList.get(flightList.size() - 1);
-          System.out.println("The last flight: " + lastFlight.toString());
-        }
-        if (filePrint != null) {
-          PrettyPrinter prt = new PrettyPrinter(filePrint);
-          prt.dump(airline);
-        }
-        System.exit(0);
-      }
-
       if (xmlFile != null) {
         try {
           XmlParser xmlParser = new XmlParser(xmlFile);
@@ -250,6 +233,23 @@ public class Project4 {
             System.exit(1);
           }
         }
+      }
+      /** Check if "print" option is input
+       * This function will check if <code>print</code> option is input.
+       * If yes, it will print all the information of flights in the airline.
+       */
+      if (printFlag || filePrint != null) {
+        if (printFlag) {
+          System.out.println("Airline: " + airline.getName());
+          ArrayList<AbstractFlight> flightList = airline.getFlights();
+          AbstractFlight lastFlight = flightList.get(flightList.size() - 1);
+          System.out.println("The last flight: " + lastFlight.toString());
+        }
+        if (filePrint != null) {
+          PrettyPrinter prt = new PrettyPrinter(filePrint);
+          prt.dump(airline);
+        }
+        System.exit(0);
       }
 
     } catch (IllegalArgumentException | IOException e) {

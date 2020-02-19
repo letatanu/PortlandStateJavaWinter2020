@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<!DOCTYPE airline SYSTEM "http://www.cs.pdx.edu/~whitlock/dtds/airline.dtd">
+<airline>
+<name>Project3</name>
+<flight>
+<number>200</number>
+<src>CWA</src>
+<depart>
+<date day="03" month="01" year="2020"/>
+<time hour="12" minute="14"/>
+</depart>
+<dest>DRO</dest>
+<arrive>
+<date day="13" month="01" year="2020"/>
+<time hour="14" minute="45"/>
+</arrive>
+</flight>
+<flight>
+<number>200</number>
+<src>CWA</src>
+<depart>
+<date day="03" month="01" year="2020"/>
+<time hour="12" minute="14"/>
+</depart>
+<dest>DRO</dest>
+<arrive>
+<date day="13" month="01" year="2020"/>
+<time hour="14" minute="45"/>
+</arrive>
+</flight>
+<flight>
+<number>400</number>
+<src>EVV</src>
+<depart>
+<date day="04" month="03" year="2020"/>
+<time hour="12" minute="36"/>
+</depart>
+<dest>LFT</dest>
+<arrive>
+<date day="05" month="03" year="2020"/>
+<time hour="20" minute="19"/>
+</arrive>
+</flight>
+<flight>
+<number>300</number>
+<src>EVV</src>
+<depart>
+<date day="04" month="03" year="2020"/>
+<time hour="09" minute="00"/>
+</depart>
+<dest>ORD</dest>
+<arrive>
+<date day="05" month="03" year="2020"/>
+<time hour="19" minute="00"/>
+</arrive>
+</flight>
+<flight>
+<number>300</number>
+<src>EVV</src>
+<depart>
+<date day="04" month="03" year="2020"/>
+<time hour="09" minute="00"/>
+</depart>
+<dest>ORD</dest>
+<arrive>
+<date day="05" month="03" year="2020"/>
+<time hour="19" minute="00"/>
+</arrive>
+</flight>
+<flight>
+<number>300</number>
+<src>EVV</src>
+<depart>
+<date day="04" month="03" year="2020"/>
+<time hour="09" minute="00"/>
+</depart>
+<dest>ORD</dest>
+<arrive>
+<date day="05" month="03" year="2020"/>
+<time hour="19" minute="00"/>
+</arrive>
+</flight>
+<flight>
+<number>300</number>
+<src>EVV</src>
+<depart>
+<date day="04" month="03" year="2020"/>
+<time hour="09" minute="00"/>
+</depart>
+<dest>ORD</dest>
+<arrive>
+<date day="05" month="03" year="2020"/>
+<time hour="19" minute="00"/>
+</arrive>
+</flight>
+</airline>

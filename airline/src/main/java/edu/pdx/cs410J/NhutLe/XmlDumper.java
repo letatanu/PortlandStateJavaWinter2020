@@ -3,7 +3,6 @@ package edu.pdx.cs410J.NhutLe;
 import edu.pdx.cs410J.AbstractAirline;
 import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.AirlineDumper;
-import edu.pdx.cs410J.ParserException;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -83,7 +82,7 @@ public class XmlDumper implements AirlineDumper {
 
             // need to fix depart string
             ArrayList<String> depart = dateToString(flight.getDepartDateTime());
-            String departDate = String.format("<date day=\"%s\" month=\"%s\" year=\"%s\"/>\n" + "<time hour=\"%s\" minute=\"%s\"/>", depart.get(0), depart.get(1), depart.get(2), depart.get(3), depart.get(4));
+            String departDate = String.format("<date day=\"%s\" month=\"%s\" year=\"%s\"/>\n" + "<time hour=\"%s\" minute=\"%s\"/>", depart.get(1), depart.get(0), depart.get(2), depart.get(3), depart.get(4));
             bufferedWriter.write(departDate);
             bufferedWriter.newLine();
 
@@ -96,7 +95,7 @@ public class XmlDumper implements AirlineDumper {
             bufferedWriter.write("<arrive>");
             bufferedWriter.newLine();
             ArrayList<String> arrive = dateToString(flight.getArriveDateTime());
-            String arriveDate = String.format("<date day=\"%s\" month=\"%s\" year=\"%s\"/>\n" + "<time hour=\"%s\" minute=\"%s\"/>", arrive.get(0), arrive.get(1), arrive.get(2), arrive.get(3), arrive.get(4));
+            String arriveDate = String.format("<date day=\"%s\" month=\"%s\" year=\"%s\"/>\n" + "<time hour=\"%s\" minute=\"%s\"/>", arrive.get(1), arrive.get(0), arrive.get(2), arrive.get(3), arrive.get(4));
             bufferedWriter.write(arriveDate);
             bufferedWriter.newLine();
             bufferedWriter.write("</arrive>");

@@ -5,7 +5,9 @@ import edu.pdx.cs410J.AbstractFlight;
 import edu.pdx.cs410J.AirlineDumper;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.SimpleFormatter;
 
 public class TextDumper implements AirlineDumper {
   private final String fileName;
@@ -36,20 +38,22 @@ public class TextDumper implements AirlineDumper {
       /**
        * It write line by line every flight information
        */
-      for (AbstractFlight flight : flights) {
+      SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+      for (AbstractFlight f : flights) {
+        Flight flight = (Flight) f;
         bufferedWriter.write(Integer.toString(flight.getNumber()));
         bufferedWriter.newLine();
 
         bufferedWriter.write(flight.getSource());
         bufferedWriter.newLine();
 
-        bufferedWriter.write(flight.getDepartureString());
+        bufferedWriter.write(sdf.format(flight.getDepartDateTime()));
         bufferedWriter.newLine();
 
         bufferedWriter.write(flight.getDestination());
         bufferedWriter.newLine();
 
-        bufferedWriter.write(flight.getArrivalString());
+        bufferedWriter.write(sdf.format(flight.getArriveDateTime()));
         bufferedWriter.newLine();
 
       }

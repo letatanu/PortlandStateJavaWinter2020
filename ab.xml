@@ -3,16 +3,16 @@
 <airline>
 <name>Project3</name>
 <flight>
-<number>200</number>
-<src>CWA</src>
+<number>300</number>
+<src>EVV</src>
 <depart>
-<date day="01" month="03" year="2020"/>
-<time hour="12" minute="14"/>
+<date day="04" month="03" year="2020"/>
+<time hour="09" minute="00"/>
 </depart>
-<dest>DRO</dest>
+<dest>ORD</dest>
 <arrive>
-<date day="01" month="13" year="2020"/>
-<time hour="14" minute="45"/>
+<date day="05" month="03" year="2020"/>
+<time hour="19" minute="00"/>
 </arrive>
 </flight>
 </airline>

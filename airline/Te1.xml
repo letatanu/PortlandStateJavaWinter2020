@@ -11,7 +11,7 @@
 </depart>
 <dest>PDX</dest>
 <arrive>
-<date day="12" month="13" year="2020"/>
+<date day="13" month="12" year="2020"/>
 <time hour="12" minute="31"/>
 </arrive>
 </flight>
@@ -24,7 +24,7 @@
 </depart>
 <dest>PDX</dest>
 <arrive>
-<date day="12" month="13" year="2020"/>
+<date day="13" month="12" year="2020"/>
 <time hour="12" minute="31"/>
 </arrive>
 </flight>
