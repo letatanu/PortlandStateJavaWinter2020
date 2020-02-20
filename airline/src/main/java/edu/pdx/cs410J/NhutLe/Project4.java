@@ -37,6 +37,11 @@ public class Project4 {
      */
     String xmlFile = null;
 
+    /**
+     * Flag
+     */
+    Boolean xmlFlag = false;
+    Boolean textFlag = false;
     /** Check if the option <code>-README</code> or <code>-print</code> or both is input.
      * If yes <code>-README</code>, print out <code> README </code> and exit.
      * If yes <code>-print</code>, set printFlag = true.
@@ -65,6 +70,7 @@ public class Project4 {
             System.err.println("The saving file name is missing...");
             System.exit(1);
           }
+          textFlag = true;
           fileName = args[i + 1];
           i++;
         } else if (option.equals("pretty")) {
@@ -79,6 +85,7 @@ public class Project4 {
             System.err.println("The XML file name is missing...");
             System.exit(1);
           }
+          xmlFlag = true;
           xmlFile = args[i + 1];
           i++;
         } else {
@@ -99,6 +106,9 @@ public class Project4 {
       System.exit(1);
     } else if (newArgs.size() > 10) {
       System.err.println("Unknown command line arguments");
+      System.exit(1);
+    } else if (xmlFlag && textFlag) {
+      System.err.println("textFile and xmlFile cannot go together");
       System.exit(1);
     }
 
