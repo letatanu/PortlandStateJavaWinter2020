@@ -19,6 +19,11 @@ import java.util.Map;
 public class AirlineServlet extends HttpServlet {
     static final String AIRLINE_NAME_PARAMETER = "airline";
     static final String FLIGHT_NUMBER_PARAMETER = "flightNumber";
+    static final String SRC_PARAMETER = "src";
+    static final String DEPART_DATETIME_PARAMETER = "departDateTime";
+    static final String DEST_PARAMETER = "dest";
+    static final String ARRIVE_DATETIME_PARAMETER = "arriveDateTime";
+
 
     private final Map<String, Airline> airlines = new HashMap<>();
 
@@ -64,8 +69,31 @@ public class AirlineServlet extends HttpServlet {
             return;
         }
 
-        Flight flight = new Flight();
+        String src = getParameter(SRC_PARAMETER, request );
+        if ( src == null) {
+            missingRequiredParameter( response, SRC_PARAMETER);
+            return;
+        }
 
+        String departDateTime = getParameter(DEPART_DATETIME_PARAMETER, request );
+        if ( departDateTime == null) {
+            missingRequiredParameter( response, DEPART_DATETIME_PARAMETER);
+            return;
+        }
+
+        String dest = getParameter(DEST_PARAMETER, request );
+        if ( dest == null) {
+            missingRequiredParameter( response, DEST_PARAMETER);
+            return;
+        }
+
+        String arriveDateTime = getParameter(ARRIVE_DATETIME_PARAMETER, request );
+        if ( arriveDateTime == null) {
+            missingRequiredParameter( response, ARRIVE_DATETIME_PARAMETER);
+            return;
+        }
+
+        Flight flight = new Flight(flightNumber, src, departDateTime, dest, arriveDateTime);
         airline.addFlight(flight);
 
         PrintWriter pw = response.getWriter();
