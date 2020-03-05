@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class XmlParser extends ProjectXmlHelper implements AirlineParser {
-    private final String content;
+    private final String fileName;
 
     /** The System ID for the Family Tree DTD */
     protected static final String SYSTEM_ID =
@@ -33,11 +33,11 @@ public class XmlParser extends ProjectXmlHelper implements AirlineParser {
 
     /**
      * Constructor
-     * @param content
+     * @param fileName
      */
-    XmlParser(String content) {
+    XmlParser(String fileName) {
         super(PUBLIC_ID, SYSTEM_ID, "airline.dtd");
-        this.content = content;
+        this.fileName = fileName;
     }
 
     private String getDateTime(Element node) throws ParserException {
@@ -62,17 +62,17 @@ public class XmlParser extends ProjectXmlHelper implements AirlineParser {
          * If reading file does not exist, try to create a new one.
          */
 
-//        File file = new File(this.fileName);
-//        if (!file.exists()) {
-//            try {
-//                if(file.createNewFile()) {
-//                    throw new ParserException("XML File is created successfully");
-//                }
-//            }
-//            catch (IOException e) {
-//                throw new ParserException("XML File cannot be created.");
-//            }
-//        }
+        File file = new File(this.fileName);
+        if (!file.exists()) {
+            try {
+                if(file.createNewFile()) {
+                    throw new ParserException("XML File is created successfully");
+                }
+            }
+            catch (IOException e) {
+                throw new ParserException("XML File cannot be created.");
+            }
+        }
 
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -82,7 +82,10 @@ public class XmlParser extends ProjectXmlHelper implements AirlineParser {
             builder = factory.newDocumentBuilder();
             builder.setErrorHandler(this);
             builder.setEntityResolver(this);
-            Document doc = builder.parse(this.content);
+            FileInputStream fis = new FileInputStream(this.fileName);
+            InputSource is = new InputSource(fis);
+//            Document doc = builder.parse(this.getClass().getResourceAsStream(this.fileName));
+            Document doc = builder.parse(is);
             doc.getDocumentElement().normalize();
             String airlineName = doc.getElementsByTagName("name").item(0).getTextContent();
             Airline airline = new Airline(airlineName);

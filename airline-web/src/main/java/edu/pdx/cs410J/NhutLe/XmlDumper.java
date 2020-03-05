@@ -106,7 +106,9 @@ public class XmlDumper implements AirlineDumper {
             bufferedWriter.write("</flight>");
             bufferedWriter.newLine();
         }
+
         bufferedWriter.write("</airline>");
         bufferedWriter.close();
+
     }
 }
